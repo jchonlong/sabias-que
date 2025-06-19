@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6818211646878959"
-     crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¿Sabías que...?</title>
@@ -38,6 +36,7 @@
       font-size: 1.4em;
       color: #34495e;
       margin-bottom: 1.5em;
+      min-height: 60px;
       transition: opacity 0.5s ease;
     }
 
@@ -75,44 +74,28 @@
 
     <!-- Espacio para AdSense -->
     <div class="adsense">
-      <!-- Reemplaza el siguiente bloque cuando tengas tu código de anuncio -->
-      <p style="font-size: 0.9em; color: #aaa;">[Aquí irá tu anuncio]</p>
+      <!-- Aquí puedes poner tu código AdSense cuando lo tengas -->
+      <p style="font-size: 0.9em; color: #aaa;">[Publicidad aquí]</p>
     </div>
   </div>
 
   <footer>Hecho con ❤️ por Qarloo</footer>
 
   <script>
-    <script>
-  let datos = [];
+    let datos = [];
 
-  async function cargarDatos() {
-    try {
-      const res = await fetch('datos.json');
-      datos = await res.json();
-      mostrarDato();
-    } catch (error) {
-      document.getElementById("dato").innerText = "Error al cargar datos.";
+    async function cargarDatos() {
+      try {
+        const res = await fetch('datos.json');
+        datos = await res.json();
+        mostrarDato();
+      } catch (error) {
+        document.getElementById("dato").innerText = "No se pudieron cargar los datos 😢";
+      }
     }
-  }
-
-  function mostrarDato() {
-    if (datos.length === 0) return;
-    const datoDiv = document.getElementById("dato");
-    datoDiv.style.opacity = 0;
-    setTimeout(() => {
-      const aleatorio = datos[Math.floor(Math.random() * datos.length)];
-      datoDiv.innerText = aleatorio;
-      datoDiv.style.opacity = 1;
-    }, 300);
-  }
-
-  // Cargar datos al iniciar
-  cargarDatos();
-</script>
-
 
     function mostrarDato() {
+      if (datos.length === 0) return;
       const datoDiv = document.getElementById("dato");
       datoDiv.style.opacity = 0;
       setTimeout(() => {
@@ -122,7 +105,8 @@
       }, 300);
     }
 
-    mostrarDato();
+    // Al cargar la página
+    cargarDatos();
   </script>
 </body>
 </html>
