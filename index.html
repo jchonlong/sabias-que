@@ -83,18 +83,34 @@
   <footer>Hecho con ❤️ por Qarloo</footer>
 
   <script>
-    const datos = [
-      "Los tiburones existen desde antes que los árboles.",
-      "El corazón de un camarón está en su cabeza.",
-      "Los caracoles pueden dormir hasta tres años.",
-      "La miel nunca se echa a perder.",
-      "Las vacas tienen mejores amigas y se estresan al separarse.",
-      "Las mariposas prueban con sus patas.",
-      "El sol es 330,000 veces más masivo que la Tierra.",
-      "Los flamencos nacen grises, no rosados.",
-      "Las cebras son negras con rayas blancas, no al revés.",
-      "El ADN humano y el del plátano coinciden en un 60%."
-    ];
+    <script>
+  let datos = [];
+
+  async function cargarDatos() {
+    try {
+      const res = await fetch('datos.json');
+      datos = await res.json();
+      mostrarDato();
+    } catch (error) {
+      document.getElementById("dato").innerText = "Error al cargar datos.";
+    }
+  }
+
+  function mostrarDato() {
+    if (datos.length === 0) return;
+    const datoDiv = document.getElementById("dato");
+    datoDiv.style.opacity = 0;
+    setTimeout(() => {
+      const aleatorio = datos[Math.floor(Math.random() * datos.length)];
+      datoDiv.innerText = aleatorio;
+      datoDiv.style.opacity = 1;
+    }, 300);
+  }
+
+  // Cargar datos al iniciar
+  cargarDatos();
+</script>
+
 
     function mostrarDato() {
       const datoDiv = document.getElementById("dato");
