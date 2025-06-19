@@ -6,54 +6,79 @@
   <title>¿Sabías que...?</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f1f2f6, #dff9fb);
       font-family: 'Segoe UI', sans-serif;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       min-height: 100vh;
-      margin: 0;
+      flex-direction: column;
+    }
+
+    .container {
+      background-color: white;
       padding: 2em;
-      background: #f8f9fa;
-    }
-    h1 {
-      font-size: 2.5em;
-      color: #2c3e50;
-    }
-    #dato {
-      font-size: 1.5em;
-      margin: 1.5em 0;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       max-width: 600px;
       text-align: center;
-      color: #34495e;
     }
+
+    h1 {
+      color: #2c3e50;
+      font-size: 2.5em;
+      margin-bottom: 1em;
+    }
+
+    #dato {
+      font-size: 1.4em;
+      color: #34495e;
+      margin-bottom: 1.5em;
+      transition: opacity 0.5s ease;
+    }
+
     button {
-      padding: 0.8em 1.5em;
-      font-size: 1em;
-      background-color: #3498db;
+      background: #0984e3;
       color: white;
       border: none;
+      padding: 0.8em 1.6em;
+      font-size: 1em;
       border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
+
     button:hover {
-      background-color: #2980b9;
+      background: #74b9ff;
     }
+
     footer {
       margin-top: 2em;
-      font-size: 0.9em;
       color: #7f8c8d;
+      font-size: 0.9em;
+    }
+
+    .adsense {
+      margin: 2em auto;
     }
   </style>
 </head>
 <body>
-  <h1>¿Sabías que...?</h1>
-  <div id="dato">Cargando dato curioso...</div>
-  <button onclick="mostrarDato()">Ver otro</button>
+  <div class="container">
+    <h1>¿Sabías que...?</h1>
+    <div id="dato">Cargando dato curioso...</div>
+    <button onclick="mostrarDato()">Ver otro</button>
 
-  <footer>
-    Hecho con ❤️ para mentes curiosas
-  </footer>
+    <!-- Espacio para AdSense -->
+    <div class="adsense">
+      <!-- Reemplaza el siguiente bloque cuando tengas tu código de anuncio -->
+      <p style="font-size: 0.9em; color: #aaa;">[Aquí irá tu anuncio]</p>
+    </div>
+  </div>
+
+  <footer>Hecho con ❤️ por Qarloo</footer>
 
   <script>
     const datos = [
@@ -70,11 +95,15 @@
     ];
 
     function mostrarDato() {
-      const aleatorio = datos[Math.floor(Math.random() * datos.length)];
-      document.getElementById("dato").innerText = aleatorio;
+      const datoDiv = document.getElementById("dato");
+      datoDiv.style.opacity = 0;
+      setTimeout(() => {
+        const aleatorio = datos[Math.floor(Math.random() * datos.length)];
+        datoDiv.innerText = aleatorio;
+        datoDiv.style.opacity = 1;
+      }, 300);
     }
 
-    // Mostrar un dato al cargar
     mostrarDato();
   </script>
 </body>
